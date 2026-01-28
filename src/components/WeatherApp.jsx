@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { TextField } from "@mui/material";
 import WeatherByCity from "./WeatherByCity";
+import Forecast from "./Forecast";
 
 const WeatherApp = () => {
   const [search, setSearch] = useState("London");
@@ -27,6 +28,7 @@ const WeatherApp = () => {
       />
 
       <WeatherByCity query={query} />
+      <Forecast query={query}/>
     </>
   );
 };

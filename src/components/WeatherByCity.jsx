@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { apiKey } from "./common/constants";
-import { TextField, Box } from "@mui/material";
+import { Box } from "@mui/material";
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import DeviceThermostatIcon from '@mui/icons-material/DeviceThermostat';
+import AirIcon from '@mui/icons-material/Air';
 
 const WeatherByCity = ({ query }) => {
   const [weather, setWeather] = useState(null);
@@ -35,8 +37,10 @@ const WeatherByCity = ({ query }) => {
       {error && error}
 
       {weather && (
-        <Box sx={{ display: "flex", gap: 3, alignItems: "flex-start", flexWrap: "wrap" }}>
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+        <Box sx={{ display: "flex", gap: 3, alignItems: "flex-start", flexWrap: "wrap", justifyContent: "space-evenly"}}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2, alignItems: "center"}}>
+            <h2>Today</h2>
+            <h3>{weather.name}</h3>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
               <h3>{weather.weather[0].description}</h3>
               <img
@@ -46,17 +50,17 @@ const WeatherByCity = ({ query }) => {
             </Box>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
               <span>{weather.main.temp} °C</span>
-              <img src="/your-temperature-icon.png" />
+              <DeviceThermostatIcon/>
             </Box>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
               <span>{weather.wind.speed} m/s</span>
-              <img src="/your-wind-icon.png" />
+              <AirIcon />
             </Box>
           </Box>
           <Box>
             <iframe
-              width="350"
-              height="300"
+              width="550"
+              height="400"
               src={`https://www.openstreetmap.org/export/embed.html?bbox=${weather.coord.lon}%2C${weather.coord.lat}%2C${weather.coord.lon}%2C${weather.coord.lat}&layer=mapnik&marker=${weather.coord.lat}%2C${weather.coord.lon}`}
             ></iframe>
           </Box>
